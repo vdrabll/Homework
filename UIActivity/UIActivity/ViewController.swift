@@ -30,8 +30,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
-        
+        setupButton() 
         // Do any additional setup after loading the view.
+    }
+    
+    func setupButton() {
+        shearButton.addTarget(self, action: #selector(shearData) , for: .touchUpInside)
+    }
+    
+    @objc func shearData(_ sender: Any ) {
+        let text = self.shearTextField.text
+        
+        if text?.isEmpty == true {
+            let message = "Сначала введите текст!"
+            let alertController = UIAlertController(title: "Ошибка", message: message , preferredStyle: .alert )
+            let handler = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+            alertController.addAction(handler)
+            self.present(alertController, animated: true )
+        }
+        self.activityViewController = UIActivityViewController(activityItems: [shearTextField.text ?? nil], applicationActivities: nil)
+        self.present(activityViewController!, animated: true)
     }
     
     func setupConstraints() {
@@ -50,24 +68,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
             shearButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: -25),
             shearButton.rightAnchor.constraint(equalTo: view.rightAnchor ),
         ])
-        
-        func setupButton() {
-            shearButton.addTarget(self, action: #selector(shearData) , for: .touchUpInside)
-        }
-        
-        func shearData(_ sender: Any ) {
-            let text = self.shearTextField.text
-            
-            if text?.isEmpty == true {
-                let message = "Сначала введите текст!"
-                let alertController = UIAlertController(title: "Ошибка", message: message , preferredStyle: .alert )
-                let handler = UIAlertAction(title: "ok", style: .cancel, handler: nil)
-                alertController.addAction(handler)
-                self.present(alertController, animated: true )
-            }
-            self.activityViewController = UIActivityViewController(activityItems: [shearTextField.text ?? nil], applicationActivities: nil)
-            self.present(activityViewController!, animated: true)
-        } 
     }
 }
-
