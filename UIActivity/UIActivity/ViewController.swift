@@ -58,8 +58,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         shearTextField.delegate = self
         
         NSLayoutConstraint.activate([
-            shearTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            shearTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200),
+            shearTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
+            shearTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -400),
             shearTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             shearTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             
