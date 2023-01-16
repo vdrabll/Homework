@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     var shearButton: UIButton = {
         var button = UIButton()
@@ -30,7 +30,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
-        setupButton() 
+        setupButton()
+        shearTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -55,7 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func setupConstraints() {
         view.addSubview(shearTextField)
         view.addSubview(shearButton)
-        shearTextField.delegate = self
         
         NSLayoutConstraint.activate([
             shearTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
@@ -69,4 +69,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             shearButton.rightAnchor.constraint(equalTo: view.rightAnchor ),
         ])
     }
+}
+
+extension ViewController: UITextFieldDelegate {
+    // do something
 }
